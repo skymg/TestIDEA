@@ -2,7 +2,7 @@ package collection;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable {
     private int age;
     private String name;
 
@@ -47,5 +47,16 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(age, name);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Person) {
+            Person person = (Person) o;
+            return this.name.compareTo(person.name);
+        }
+        else {
+            throw new RuntimeException("输入类型不匹配");
+        }
     }
 }
